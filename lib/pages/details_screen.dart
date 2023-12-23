@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
-import 'package:e_commerce_app/pages/home.dart';
+import 'package:e_commerce_app/model/item.dart';
 import 'package:e_commerce_app/shared_widget/colors.dart';
 import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
-  final Item product;
+  
   const Details({super.key, required this.product});
- 
+    final Item product;
+
   @override
   State<Details> createState() => _DetailsState();
 }

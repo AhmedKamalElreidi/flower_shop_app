@@ -8,7 +8,7 @@ import 'package:e_commerce_app/shared_widget/snackbar.dart';
 import 'package:flutter/material.dart';
 
 class VerifyEmailPage extends StatefulWidget {
-  VerifyEmailPage({Key? key}) : super(key: key);
+  const VerifyEmailPage({Key? key}) : super(key: key);
 
   @override
   State<VerifyEmailPage> createState() => _VerifyEmailPageState();
@@ -21,6 +21,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
@@ -61,6 +62,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void dispose() {
+    // ignore: todo
     // TODO: implement dispose
     timer?.cancel();
     super.dispose();

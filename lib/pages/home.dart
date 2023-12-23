@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
-
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_local_variable
+import 'package:e_commerce_app/model/item.dart';
 import 'package:e_commerce_app/pages/details_screen.dart';
+import 'package:e_commerce_app/pages/profile_page.dart';
 import 'package:e_commerce_app/provider/cart.dart';
 import 'package:e_commerce_app/shared_widget/appbar.dart';
 import 'package:e_commerce_app/shared_widget/colors.dart';
@@ -9,34 +10,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Item {
-  String imgPath;
-  double price;
-  String location;
-  String name;
-  Item(
-      {required this.name,
-        required this.imgPath,
-      required this.price,
-      this.location = "Main Branch"});
-}
+
 
 class Home extends StatelessWidget {
-  final List items = [
-    Item(name: "Product1" ,imgPath: "assets/img/1.webp", price: 112.98, location: "Ahmed Branch"),
-    Item(name: "Product2" ,imgPath: "assets/img/2.webp", price: 212.99),
-    Item(name: "Product3" ,imgPath: "assets/img/3.webp", price: 312.99),
-    Item(name: "Product4" ,imgPath: "assets/img/4.webp", price: 412.99),
-    Item(name: "Product5" ,imgPath: "assets/img/5.webp", price: 512.99),
-    Item(name: "Product6" ,imgPath: "assets/img/6.webp", price: 612.99),
-    Item(name: "Product7" ,imgPath: "assets/img/7.webp", price: 712.99),
-    Item(name: "Product8" ,imgPath: "assets/img/8.webp", price: 812.99),
-  ];
-  Home({super.key});
+  
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final classInstancee = Provider.of<Cart>(context);
+    final userr=FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         drawer: Drawer(
@@ -46,13 +29,13 @@ class Home extends StatelessWidget {
               Column(
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text("Ahmed kamal",
+                    accountName: Text("ahmed",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color.fromARGB(255, 7, 7, 7),
                         )),
-                    accountEmail: Text("Ahmed@yahoo.com",
+                    accountEmail: Text("email@gmail.com",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -60,7 +43,7 @@ class Home extends StatelessWidget {
                         )),
                     currentAccountPicture: CircleAvatar(
                       radius: 55,
-                      backgroundImage: AssetImage("assets/img/3.jpeg"),
+                      backgroundImage: AssetImage("assets/img/445.jpg"),
                     ),
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -94,6 +77,17 @@ class Home extends StatelessWidget {
                       title: Text("About"),
                       leading: Icon(Icons.help_center),
                       onTap: () {}),
+                  ListTile(
+                      title: Text("Profile Page"),
+                      leading: Icon(Icons.person),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfilePage(),
+                          ),
+                        );
+                      }),
                   ListTile(
                       title: Text("Logout"),
                       leading: Icon(Icons.exit_to_app),
