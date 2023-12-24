@@ -1,25 +1,23 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_local_variable
 import 'package:e_commerce_app/model/item.dart';
+import 'package:e_commerce_app/pages/checkout.dart';
 import 'package:e_commerce_app/pages/details_screen.dart';
+import 'package:e_commerce_app/pages/login.dart';
 import 'package:e_commerce_app/pages/profile_page.dart';
 import 'package:e_commerce_app/provider/cart.dart';
 import 'package:e_commerce_app/shared_widget/appbar.dart';
 import 'package:e_commerce_app/shared_widget/colors.dart';
-import 'package:e_commerce_app/pages/checkout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 class Home extends StatelessWidget {
-  
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final classInstancee = Provider.of<Cart>(context);
-    final userr=FirebaseAuth.instance.currentUser!;
+    final userr = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         drawer: Drawer(
@@ -43,7 +41,7 @@ class Home extends StatelessWidget {
                         )),
                     currentAccountPicture: CircleAvatar(
                       radius: 55,
-                      backgroundImage: AssetImage("assets/img/445.jpg"),
+                      backgroundImage: AssetImage("assets/img/avatar.png"),
                     ),
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -55,23 +53,23 @@ class Home extends StatelessWidget {
                       title: Text("Home"),
                       leading: Icon(Icons.home),
                       onTap: () {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                      builder: (context) => Home(),
-                      ),
-                    );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ),
+                        );
                       }),
                   ListTile(
                       title: Text("My products"),
                       leading: Icon(Icons.add_shopping_cart),
                       onTap: () {
                         Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Checkout(),
-                      ),
-                    );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Checkout(),
+                          ),
+                        );
                       }),
                   ListTile(
                       title: Text("About"),
@@ -93,6 +91,11 @@ class Home extends StatelessWidget {
                       leading: Icon(Icons.exit_to_app),
                       onTap: () {
                         FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Login(),
+                            ));
                       }),
                 ],
               ),
@@ -106,7 +109,7 @@ class Home extends StatelessWidget {
           title: Text("Home"),
           backgroundColor: appbarGreen,
           actions: [
-           //Row of product and price
+            //Row of product and price
             ProductAndPrice()
           ],
         ),
@@ -144,11 +147,11 @@ class Home extends StatelessWidget {
                     footer: GridTileBar(
                       // backgroundColor: Color.fromARGB(66, 73, 127, 110),
                       trailing: IconButton(
-                            color: Color.fromARGB(255, 62, 94, 70),
-                            onPressed: () {
-                              classInstancee.add(items[index]);
-                            },
-                            icon: Icon(Icons.add)),                 
+                          color: Color.fromARGB(255, 62, 94, 70),
+                          onPressed: () {
+                            classInstancee.add(items[index]);
+                          },
+                          icon: Icon(Icons.add)),
 
                       leading: Text(items[index].price.toString()),
 

@@ -1,14 +1,16 @@
 // ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, unused_local_variable, avoid_print, depend_on_referenced_packages
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_app/pages/home.dart';
 import 'package:e_commerce_app/pages/login.dart';
 import 'package:e_commerce_app/shared_widget/colors.dart';
 import 'package:e_commerce_app/shared_widget/constant.dart';
 import 'package:e_commerce_app/shared_widget/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' show basename;
 
 class Register extends StatefulWidget {
@@ -447,6 +449,10 @@ class _RegisterState extends State<Register> {
                         if (_formKey.currentState!.validate()) {
                           await register();
                           showSnackBar(context, "Done");
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Home()),
+                          );
                         } else {
                           showSnackBar(context, "error");
                         }
@@ -467,7 +473,7 @@ class _RegisterState extends State<Register> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Do you have an account ?",
-                            style: TextStyle(fontSize: 20)),
+                            style: TextStyle(fontSize: 15)),
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -478,7 +484,7 @@ class _RegisterState extends State<Register> {
                           child: Text('Sign In',
                               style: TextStyle(
                                   decoration: TextDecoration.underline,
-                                  fontSize: 20)),
+                                  fontSize: 16)),
                         )
                       ],
                     ),
